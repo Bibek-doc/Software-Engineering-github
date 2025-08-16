@@ -1,0 +1,9 @@
+Week 3- Activity 4-Yoobee-Collage-Database Project scope:
+
+Yoobee collage Database will  create and track all its academic information at one table of database. The main reason behind this project is to keep the record of their students, lecture, course, class and to handle records more efficiently, avoid duplicate information, and give clear reports. Whereas, the database make the relationship of each database where one students can get access to the another class or lecture and with inverse relationship like one to many, many to one, one to one, many to many.
+
+Entities:
+1: Students: It holds all details of the students as (Name, Date of birth, Unique ID(Roll no).
+2: Lecture: It contains all the data of the lecture (Name, Address, ID number, Email, Phone)
+3: Course: It contains all the data related to the course and shows the relation between course, lecture and students.
+4: Class: It hold all the information regarding class and show relation between each entities.(Class Id, Course ID, Lecture ID, Student ID with semester details).

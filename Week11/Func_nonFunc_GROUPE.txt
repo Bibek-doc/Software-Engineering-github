@@ -1,0 +1,271 @@
+COURIER LOGISTICS MANAGEMENT SYSTEM
+Functional & Non-Functional Requirements Document 
+PROJECT: Courier Logistics Management System 
+
+SECTION 1: FUNCTIONAL REQUIREMENTS 
+
+
+CUSTOMER-FACING REQUIREMENTS:
+
+FR1: User Registration & Login
+Description: Customers can create accounts and authenticate via email
+Status: STARTED
+Priority: High
+Implementation: JWT authentication with email verification
+
+FR2: Package Drop-off Initiation
+Description: Customers can initiate a shipment request at the physical store
+Status: NOT STARTED
+Priority: High
+Implementation: Web form capturing sender, recipient, and package details
+
+FR3: Real-time Package Tracking
+Description: Customers can view live location of their packages after purchase
+Status: NOT STARTED
+Priority: High
+Implementation: WebSocket + Google Maps/Mapbox integration
+
+FR4: Tracking ID Generation
+Description: System generates unique tracking IDs upon payment completion
+Status: NOT STARTED
+Priority: High
+Implementation: Automated ID generation algorithm with barcode/QR code output
+
+FR5: In-store Payment Processing
+Description: Support multiple payment methods (cash, credit card, debit card)
+Status: NOT STARTED
+Priority: High
+Implementation: Payment gateway integration at physical location
+
+FR6: Digital Receipt Generation
+Description: System generates downloadable/email receipt after payment
+Status: NOT STARTED
+Priority: Medium
+Implementation: PDF generation with payment and tracking details
+
+FR7: Package Status Notifications
+Description: Customers receive email/SMS updates on package status changes
+Status: NOT STARTED
+Priority: Medium
+Implementation: Event-driven notification system
+
+FR8: Order History
+Description: Customers can view historical shipments and their status
+Status: NOT STARTED
+Priority: Medium
+Implementation: Database queries with date-range filtering
+
+ADMINISTRATOR/FLEET MANAGER REQUIREMENTS:
+
+FR9: Live Vehicle Tracking
+Description: Real-time GPS tracking of all active delivery vehicles on map
+Status: NOT STARTED
+Priority: High
+Implementation: GPS integration + WebSocket for live position updates
+
+FR10: Delivery Assignment
+Description: Admins assign packages/routes to specific drivers
+Status: NOT STARTED
+Priority: High
+Implementation: Drag-drop assignment interface or automated allocation
+
+FR11: Tracking ID Management
+Description: Admins can generate, assign, and manage all tracking IDs
+Status: NOT STARTED
+Priority: High
+Implementation: Central tracking ID dashboard with bulk operations
+
+FR12: Operational Analytics Dashboard
+Description: Admins view key metrics: delivery success rate, avg delivery time, etc.
+Status: NOT STARTED
+Priority: High
+Implementation: Data visualization with charts and filters
+
+FR13: Delivery Confirmation
+Description: Drivers can confirm successful delivery with proof (signature)
+Status: NOT STARTED
+Priority: High
+Implementation: Mobile-friendly delivery confirmation interface
+
+FR14: Package Status Updates
+Description: Admins can manually update or mark package status changes
+Status: NOT STARTED
+Priority: Medium
+Implementation: Status update forms with timestamp tracking
+
+FR15: Admin User Management
+Description: Super admin can create/manage admin accounts and permissions
+Status: NOT STARTED
+Priority: High
+Implementation: Role-based access control (RBAC)
+
+FR16: Barcode/QR Code Generation
+Description: System generates barcode/QR codes for package stickers
+Status: NOT STARTED
+Priority: High
+Implementation: Barcode library integration with print functionality
+
+SECTION 2: NON-FUNCTIONAL REQUIREMENTS
+
+
+PERFORMANCE REQUIREMENTS:
+
+NFR1: Concurrent User Handling - 10,000 Users
+Requirement: System must handle 10,000 concurrent users without degradation
+Status: NOT TESTED
+Priority: Critical
+Implementation: Load balancing, horizontal scaling with Docker, Redis caching
+Target Metric: Response time <2 seconds at peak load
+
+NFR2: Real-time Tracking Latency
+Requirement: Live vehicle location updates must occur within 2-3 seconds
+Status: NOT TESTED
+Priority: High
+Implementation: WebSocket optimization, efficient database queries
+Target Metric: <3 second latency for position updates
+
+NFR3: API Response Time
+Requirement: RESTful API endpoints must respond within 500ms-1 second
+Status: NOT TESTED
+Priority: High
+Implementation: Database indexing, Redis caching, query optimization
+Target Metric: 95th percentile response time <1s
+
+
+SCALABILITY REQUIREMENTS:
+
+NFR4: Database Scalability
+Requirement: Database must support migration from SQLite to PostgreSQL/MongoDB
+Status: NOT STARTED
+Priority: High
+Implementation: Abstraction layer for database switching
+
+
+SECURITY REQUIREMENTS:
+
+NFR5: Data Encryption
+Requirement: All sensitive data (passwords, payment info) must be encrypted
+Status: NOT IMPLEMENTED
+Priority: Critical
+Implementation: AES-256 encryption, SSL/TLS for data in transit
+Standard: OWASP Top 10
+
+NFR6: Authentication & Authorization
+Requirement: JWT-based authentication with role-based access control
+Status: NOT IMPLEMENTED
+Priority: Critical
+Implementation: JWT token generation, RBAC middleware
+Standard: OAuth 2.0 principles
+
+NFR7: Input Validation & Sanitization
+Requirement: All user inputs must be validated and sanitized
+Status: NOT IMPLEMENTED
+Priority: Critical
+Implementation: Server-side validation, parameterized queries
+Protection: SQL injection, XSS, CSRF attacks
+
+NFR8: API Security
+Requirement: RESTful APIs must be protected against unauthorized access
+Status: NOT IMPLEMENTED
+Priority: High
+Implementation: API authentication, rate limiting, request validation
+
+NFR9: Payment Security
+Requirement: Payment processing must comply with PCI DSS standards
+Status: NOT IMPLEMENTED
+Priority: Critical
+Implementation: Secure payment gateway integration, no raw card storage
+
+NFR10: Session Management
+Requirement: Secure session handling with automatic timeout (15-30 minutes)
+Status: NOT IMPLEMENTED
+Priority: High
+Implementation: Redis session storage, secure cookies
+
+RELIABILITY REQUIREMENTS:
+
+NFR11: System Availability
+Requirement: System must maintain 99.5% uptime 
+Status: NOT TESTED
+Priority: High
+Implementation: Redundancy, failover mechanisms, monitoring
+Target: Maximum 3.66 hours downtime per month
+
+NFR12: Backup & Recovery
+Requirement: Daily automated backups with <1 hour recovery time objective (RTO)
+Status: NOT IMPLEMENTED
+Priority: High
+Implementation: Automated backup scripts, backup verification, disaster recovery plan
+Target: RTO <1 hour, RPO <1 hour
+
+NFR13: Data Integrity
+Requirement: Transactions must maintain ACID properties
+Status: NOT TESTED
+Priority: High
+Implementation: Database transaction management
+Target: Zero data loss scenarios
+
+USABILITY REQUIREMENTS:
+
+NFR14: Responsive Design
+Requirement: Web interface must be responsive and work on desktop/tablet/mobile
+Status: NOT STARTED
+Priority: High
+Implementation: CSS frameworks (Bootstrap, Tailwind), media queries
+Target: All viewports 320px-1920px
+
+NFR15: Accessibility
+Requirement: System must comply with WCAG 2.1 AA accessibility standards
+Status: NOT STARTED
+Priority: Medium
+Implementation: Proper semantic HTML, ARIA labels, keyboard navigation
+
+
+MAINTAINABILITY REQUIREMENTS:
+
+NFR16: Code Documentation
+Requirement: All functions and modules must have comprehensive documentation
+Status: NOT STARTED
+Priority: Medium
+Implementation: JSDoc, docstrings, API documentation
+
+NFR17: Version Control
+Requirement: Code must be managed in Git with clear commit history
+Status: NOT STARTED
+Priority: Medium
+Implementation: Git workflow, meaningful commit messages
+
+NFR18: Testing Coverage
+Requirement: Minimum 80% code coverage with unit and integration tests
+Status: NOT STARTED
+Priority: High
+Implementation: Jest/Pytest, CI/CD pipeline integration
+Target: 80%+ code coverage
+
+DEPLOYMENT & PORTABILITY REQUIREMENTS:
+
+NFR19: Containerization
+Requirement: Application must be containerized using Docker
+Status: NOT STARTED
+Priority: High
+Implementation: Dockerfile for backend/frontend, docker-compose for orchestration
+
+NFR20: Cross-Platform Compatibility
+Requirement: Application must run seamlessly on Windows and macOS operating systems
+Status: NOT STARTED
+Priority: High
+Implementation: Docker containerization
+Target: 100% feature compatibility across Windows and macOS
+
+
+
+CRITICAL REQUIREMENTS (Must Complete First):
+1. User Registration & Login (FR1) + Authentication & Authorization (NFR6)
+2. In-store Payment Processing (FR5) + Payment Security (NFR9)
+3. Tracking ID Generation (FR4) + Barcode/QR Code Generation (FR16)
+4. Real-time Package Tracking (FR3) + Real-time Tracking Latency (NFR2)
+5. Database Design + Data Encryption (NFR5)
+6. API Framework + API Security (NFR8)
+7. Testing Framework (NFR18)
+
+
